@@ -256,7 +256,7 @@ return [
         ['header' => 'Aminisitrador'],
         [
             'text' => 'Configurar Perfil',
-            'url'  => 'admin/profile',
+            'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
