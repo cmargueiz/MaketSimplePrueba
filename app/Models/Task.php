@@ -11,8 +11,20 @@ class Task extends Model
     
 
     protected $fillable = [
+        'id',
         'title',
         'description',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 
 }
