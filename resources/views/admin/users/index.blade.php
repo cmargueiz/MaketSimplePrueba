@@ -38,13 +38,13 @@
                         <td>{{$user->password}}</td>
                         <td>
                             
-                            
+                            @if ($user->id != auth()->user()->id)
                             <form action="{{route('admin.users.destroy',$user)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
-
+                            @endif
                         </td>
                     </tr>
                 @endforeach
