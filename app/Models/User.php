@@ -26,6 +26,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -37,6 +38,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'email_verified_at',
+        'two_factor_reset',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'remember_token',
+        'current_team_id',
+        'profile_photo_path',
+        'profile_photo_url',
+        'created_at',
+        'updated_at',
         'password',
         'remember_token',
         'two_factor_recovery_codes',

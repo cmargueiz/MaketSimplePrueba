@@ -247,16 +247,21 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Dasboard Profile',
-            'url'         => 'dashboard',
+            'text'        => 'Tareas',
+            'url'         => 'admin/tasks',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Aminisitrador'],
         [
-            'text' => 'profile',
-            'url'  => 'user/profile',
+            'text' => 'Configurar Perfil',
+            'url'  => 'admin/profile',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Ver usuarios',
+            'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -472,5 +477,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
