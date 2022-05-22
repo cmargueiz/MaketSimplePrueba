@@ -113,7 +113,7 @@ class TaskApiController extends Controller
 
         } else {
             return response()->json([
-                'message'=>'Tarea No entrada',
+                'message'=>'Tarea No encontrada',
                 
             ],404);
         }
@@ -140,7 +140,7 @@ class TaskApiController extends Controller
 
         } else {
             return response()->json([
-                'message'=>'Tarea No entrada',
+                'message'=>'Tarea No encontrada',
                 
             ],404);
         }
