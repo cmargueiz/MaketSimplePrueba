@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Task\TaskApiController;
 use App\Http\Controllers\User\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,7 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
 Route::post('/infouser',[AuthController::class,'infouser'])->middleware('auth:sanctum');
+Route::get('/task/{user_id}',[TaskApiController::class,'index'])->middleware('auth:sanctum');
+Route::post('/task',[TaskApiController::class,'store'])->middleware('auth:sanctum');
+Route::put('/task/{id}',[TaskApiController::class,'update'])->middleware('auth:sanctum');
+Route::delete('/task/{id}',[TaskApiController::class,'destroy'])->middleware('auth:sanctum');
