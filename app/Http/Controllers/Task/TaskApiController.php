@@ -104,7 +104,7 @@ class TaskApiController extends Controller
             $task = Task::find($id);
             $task->title = isset($request->title)?$validateData['title']:$task->title;
             $task->description = isset($request->description) ? $validateData['description'] : $task->description;
-            $task->prioriry = isset($request->priority) ? $validateData['description'] : $task->prioriry ;
+            $task->priority = isset($request->priority) ? $validateData['priority'] : $task->priority ;
             $task->user_id = $user_id;
             $task->save();
 
