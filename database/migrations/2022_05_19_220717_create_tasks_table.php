@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->unsignedInteger('id')->autoIncrement();
             $table->string('title');
             $table->text('description')->nullable();
-            // $table->enum('status', ['Todo', 'Done'])->default('Todo');
+            $table->unsignedInteger('priority')->default(1);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

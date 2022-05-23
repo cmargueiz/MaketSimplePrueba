@@ -15,6 +15,7 @@ class Task extends Model
         'id',
         'title',
         'description',
+        'priority',
         'user_id'
     ];
 

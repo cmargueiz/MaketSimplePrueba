@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
 
+use function GuzzleHttp\Promise\task;
+
 class TaskApiController extends Controller
 {
     /**
@@ -42,12 +44,13 @@ class TaskApiController extends Controller
         $validateData = $request->validate([
             'title'=>'string|required',
             'description'=>'string',
-            
+            'priority'=>'integer'
         ]);
 
         $task = Task::create([
             'title'=>$validateData['title'],
             'description'=>$validateData['description'],
+            'priority'=>$validateData['priority'],
             'user_id' => $user_id
         ]);
 
@@ -91,7 +94,8 @@ class TaskApiController extends Controller
 
         $validateData = $request->validate([
             'title'=>'string|required',
-            'description'=>'string'
+            'description'=>'string',
+            'priority'=>'number'
         ]);
 
 
@@ -100,6 +104,7 @@ class TaskApiController extends Controller
             $task = Task::find($id);
             $task->title = isset($request->title)?$validateData['title']:$task->title;
             $task->description = isset($request->description) ? $validateData['description'] : $task->description;
+            $task->prioriry = isset($request->priority) ? $validateData['description'] : $task->prioriry ;
             $task->user_id = $user_id;
             $task->save();
 
@@ -107,7 +112,8 @@ class TaskApiController extends Controller
                 'message'=>'Tarea Modificada',
                 'task'=>[
                     'title'=>$task->title,
-                    'description'=>$task->description
+                    'description'=>$task->description,
+                    'priority'=>$task->priority
                 ]
             ],200);
 
