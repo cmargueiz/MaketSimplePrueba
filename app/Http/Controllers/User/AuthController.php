@@ -26,35 +26,49 @@ class AuthController extends Controller
             'password'=>Hash::make($validatedData['password']),
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->json('El correo no ha sido verificado', 401);
+        } else {
+            $credentials = $request->only('email', 'password');
 
-        return response()->json([
-            'access_token'=>$token,
-            'token_type'=>'Bearer'
-        ],201);
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return response()->json(["user" => Auth::user()], 201);
+            } else {
+                return response()->json('Usuario o contraseña incorrecta', 401);
+            }
+        }
     }
 
 
     public function login(Request $request)
     {
-        if(!Auth::attempt($request->only('email','password'))){
-            return response()->json([
-                'message'=>'Usuario no Registrado'
-            ],401);
+        $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->json('El correo no ha sido verificado', 401);
+        } else {
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return response()->json(["user" => Auth::user()], 201);
+            } else {
+                return response()->json('Usuario o contraseña incorrecta', 401);
+            }
         }
-            $user = User::where('email',$request['email'])->firstOrFail();
-            $token = $user->createToken('auth_token')->plainTextToken;
-            
-        
-            return response()->json([
-                'access_token'=>$token,
-                'token_type'=>'Bearer'
-            ],200);
     }
 
-    public function infoUser(Request $request)
-    {
-       return  $request->user();
+    public function logout(Request $request)
+    { //hace logout
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(['message'=>'Sesion cerrada'],200);
     }
 
 }

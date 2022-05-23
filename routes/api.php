@@ -24,6 +24,7 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
 Route::post('/infouser',[AuthController::class,'infouser'])->middleware('auth:sanctum');
+Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 Route::get('/task/{user_id}',[TaskApiController::class,'index'])->middleware('auth:sanctum');
 Route::post('/task',[TaskApiController::class,'store'])->middleware('auth:sanctum');
 Route::put('/task/{id}',[TaskApiController::class,'update'])->middleware('auth:sanctum');

@@ -130,7 +130,7 @@ class TaskApiController extends Controller
     {
         
         $user_id = auth()->user()->id;
-        if (Task::where(['user_id'=>$user_id,'id'=>$id])->exists()) {
+        if (Task::where(['id'=>$id])->exists()) {
             $task = Task::find($id);
             $task->delete();
 
