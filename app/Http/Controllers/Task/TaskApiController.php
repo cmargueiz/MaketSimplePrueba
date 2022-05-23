@@ -95,7 +95,7 @@ class TaskApiController extends Controller
         $validateData = $request->validate([
             'title'=>'string|required',
             'description'=>'string',
-            'priority'=>'number'
+            'priority'=>'integer'
         ]);
 
 
